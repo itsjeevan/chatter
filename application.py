@@ -19,3 +19,4 @@ def channel(data):
     channel = data["channel"]
     channels.append(channel)
     emit("announce channel", {"channel": channel}, broadcast=True)
+    

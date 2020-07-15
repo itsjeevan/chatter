@@ -7,44 +7,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // If a username exists, use it
     if (localStorage.getItem('username')) {
         const username = localStorage.getItem('username');
-        document.querySelector('.username-title').innerHTML = `Welcome ${username}`;
+        document.querySelector('.user-username').innerHTML = `Welcome ${username}`;
         document.querySelector('.username').remove();
     }
+    // Disable username button if empty
     else {
-        // Disable username button if empty
-        document.querySelector('.username-button').disabled = true;
-        document.querySelector('.username-field').onkeyup = () => {
-            if (document.querySelector('.username-field').value.length > 0) {
-                document.querySelector('.username-button').disabled = false;
-            }
-            else {
-                document.querySelector('.username-button').disabled = true;
-            }
-        };
+        validate('.username-button', '.username-field');
+
         // Set username in localStorage once username button clicked
         document.querySelector('.username-button').onclick = () => {
             const username = document.querySelector('.username-field').value;
             localStorage.setItem('username', username);
-            document.querySelector('.username-title').innerHTML = `Welcome ${username}`;
+            document.querySelector('.user-username').innerHTML = `Welcome ${username}`;
             document.querySelector('.username').remove();
             return false;
         };
     }
 
-    // Disable channel button if empty
-    document.querySelector('.channel-button').disabled = true;
-        document.querySelector('.channel-field').onkeyup = () => {
-            if (document.querySelector('.channel-field').value.length > 0) {
-                document.querySelector('.channel-button').disabled = false;
-            }
-            else {
-                document.querySelector('.channel-button').disabled = true;
-            }
-        };
+    // Disable channel & message button if field is empty
+    validate('.channel-button', '.channel-field');
+    validate('.message-button', '.message-field');
 
 
     
-    // Once connected to socket
+    // Once connected to web socket
     socket.on('connect', () => {
 
         // When channel submitted, emit socket event
@@ -61,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const a = document.createElement('a');
             a.setAttribute('href', '');
             a.setAttribute('data-channel', data.channel);
+            a.className = 'channels-item';
             a.innerHTML = data.channel;
 
             const li = document.createElement('li');
@@ -81,8 +68,24 @@ document.addEventListener('DOMContentLoaded', () => {
             return false;
         };
         
+
+
+
     });
+
 
 
 });
 
+// Disable button if field is empty
+function validate(button, field) {
+    document.querySelector(button).disabled = true;
+    document.querySelector(field).onkeyup = () => {
+        if (document.querySelector(field).value.length > 0) {
+            document.querySelector(button).disabled = false;
+        }
+        else {
+            document.querySelector(button).disabled = true;
+        }
+    };
+}
