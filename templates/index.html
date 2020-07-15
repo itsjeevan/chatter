@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Chatter</title>
+        <script src="/static/main.js"></script>
+        <link rel="stylesheet" href="/static/main.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    </head>
+    <body>
+
+        <form class="username">
+            <input class="username-field" type="text">
+            <button class="username-button">Save Username</button>
+        </form>
+        <h1 class="username-title"></h1>
+
+
+        <hr>
+        
+        
+        <h1>Channels</h1> 
+        <form class="channel">
+            <input class="channel-field" type="text">
+            <button class="channel-button">Create Channel</button>
+        </form>
+
+        <ul class="channels">
+        </ul>
+
+
+        <hr>
+
+        <h1>Channel Name Here</h1>
+        <ul class="messages">
+            
+        </ul>
+
+        <form class="message">
+            <input class="message-field" type="text">
+            <button class="message-button">Send Message</button>
+        </form>
+
+
+    </body>
+</html>
