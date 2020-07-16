@@ -23,4 +23,14 @@ def submit_channel(data):
     channel = data["channel"]
     channels.append(channel)
     emit("announce channel", {"channel": channel}, broadcast=True)
+
+@socketio.on("submit message")
+def submit_message(data):
+    message = data["message"]
+    channel = data["channel"]
+    try:
+        messages[channel].append({"message": message})
+    except KeyError:
+        messages[channel] = [{"message": message}]
+    emit("announce message", {"message": message}, broadcast=True)
     
