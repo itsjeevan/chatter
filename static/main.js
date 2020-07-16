@@ -2,13 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // localStorage.clear();
 
-    var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+    let socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
     // Disable channel, message, and username button if field is empty
     validate('.channel__button', '.channel__field');
     validate('.message__button', '.message__field');
     validate('.username__button', '.username__field');
-
 
     // If a username exists, use it
     if (localStorage.getItem('username')) {
@@ -27,9 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
     
-    
- 
-
     // Once connected to web socket
     socket.on('connect', () => {
 
@@ -38,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
         socket.on('load channels', data => {
             data.channels.forEach(add_channel);
         });
-
         // When channel submitted, emit socket event
         document.querySelector('.channel__button').onclick = () => {
             const channel = document.querySelector('.channel__field').value;
@@ -65,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             li.innerHTML = data.message;
             document.querySelector('.messages').append(li);
         });
-
+        // Load messages for clicked channel
         socket.on('load messages', data => {
             for (let message of data.messages) {
                 let li = document.createElement('li');
@@ -73,23 +68,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('.messages').append(li);
             }
         });
-
+        
         // Add channel to the channels list
         function add_channel(channel) {
             
             // Create anchor
             const a = document.createElement('a');
-            // a.setAttribute('href', 'javascript:void(0);');
-            // a.setAttribute('data-channel', channel);
+            a.setAttribute('href', 'javascript:void(0);');
             a.className = 'channels__item';
             a.innerHTML = channel;
             
+            // When channel clicked load messages
             a.onclick = () => {
-
                 document.querySelector('.messages').innerHTML = '';
                 localStorage.setItem('channel', channel)
                 document.querySelector('.channel-title').innerHTML = `Channel: ${channel}`;
-
                 socket.emit('request messages', {'channel': channel});
             };
             
@@ -102,10 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.channels').append(li);
             
         }
+
     });
-
-
-
     
     // Disable button if field is empty
     function validate(button, field) {
@@ -123,9 +114,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
-
-
-
-
-// // BACKUP
-
