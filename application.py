@@ -7,7 +7,7 @@ app = Flask(__name__, static_url_path = '/static', static_folder = "static")
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 socketio = SocketIO(app)
 
-channels = []
+channels = ["General"]
 messages = {}
 
 @app.route("/")
@@ -34,3 +34,9 @@ def submit_message(data):
         messages[channel] = [{"message": message}]
     emit("announce message", {"message": message}, broadcast=True)
     
+@socketio.on("request messages")
+def request_messages(data):
+    try:
+        emit("load messages", {"messages": messages[data["channel"]]}, broadcast=True)
+    except KeyError:
+        pass

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    localStorage.clear();
+    // localStorage.clear();
 
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
@@ -65,53 +65,67 @@ document.addEventListener('DOMContentLoaded', () => {
             li.innerHTML = data.message;
             document.querySelector('.messages').append(li);
         });
-            
 
+        socket.on('load messages', data => {
+            for (let message of data.messages) {
+                let li = document.createElement('li');
+                li.innerHTML = message.message;
+                document.querySelector('.messages').append(li);
+            }
+        });
+
+        // Add channel to the channels list
+        function add_channel(channel) {
+            
+            // Create anchor
+            const a = document.createElement('a');
+            // a.setAttribute('href', 'javascript:void(0);');
+            // a.setAttribute('data-channel', channel);
+            a.className = 'channels__item';
+            a.innerHTML = channel;
+            
+            a.onclick = () => {
+
+                document.querySelector('.messages').innerHTML = '';
+                localStorage.setItem('channel', channel)
+                document.querySelector('.channel-title').innerHTML = `Channel: ${channel}`;
+
+                socket.emit('request messages', {'channel': channel});
+            };
+            
+            // Create list item and append anchor
+            const li = document.createElement('li');
+            li.append(a)
+            
+            // When anchor is clicked load messages for the channel
+            // Append list item to channels list
+            document.querySelector('.channels').append(li);
+            
+        }
     });
 
 
+
+    
+    // Disable button if field is empty
+    function validate(button, field) {
+        
+        document.querySelector(button).disabled = true;
+        document.querySelector(field).onkeyup = () => {
+            if (document.querySelector(field).value.length > 0) {
+                document.querySelector(button).disabled = false;
+            }
+            else {
+                document.querySelector(button).disabled = true;
+            }
+        };
+        
+    }
 
 });
 
 
 
 
-// Disable button if field is empty
-function validate(button, field) {
+// // BACKUP
 
-    document.querySelector(button).disabled = true;
-    document.querySelector(field).onkeyup = () => {
-        if (document.querySelector(field).value.length > 0) {
-            document.querySelector(button).disabled = false;
-        }
-        else {
-            document.querySelector(button).disabled = true;
-        }
-    };
-
-}
-
-// Add channel to the channels list
-function add_channel(channel) {
-
-    // Create anchor
-    const a = document.createElement('a');
-    a.setAttribute('href', 'javascript:void(0);');
-    a.setAttribute('data-channel', channel);
-    a.className = 'channels__item';
-    a.innerHTML = channel;
-
-    // When anchor is clicked
-    a.onclick = () => {
-        localStorage.setItem('channel', channel)
-        document.querySelector('.channel-title').innerHTML = `Channel: ${channel}`;
-    };
-
-    // Create list item and append anchor
-    const li = document.createElement('li');
-    li.append(a)
-
-    // Append list item to channels list
-    document.querySelector('.channels').append(li);
-
-}
