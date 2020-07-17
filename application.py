@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask, render_template, request
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO, emit, join_room, leave_room
 
 app = Flask(__name__, static_url_path = '/static', static_folder = "static")
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")

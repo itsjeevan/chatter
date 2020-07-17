@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     validate('.message__button', '.message__field');
     validate('.username__button', '.username__field');
 
-    // If a username exists, use it
+    // If a username exists, use it & hide form
     if (localStorage.getItem('username')) {
         const username = localStorage.getItem('username');
         document.querySelector('.username-title').innerHTML = `Welcome ${username}`;
@@ -25,26 +25,35 @@ document.addEventListener('DOMContentLoaded', () => {
             return false;
         };
     }
+
+
+    
     
     // Once connected to web socket
     socket.on('connect', () => {
 
-        // Load saved channels from server
+        // Request saved channels from server
         socket.emit('request channels');
-        socket.on('load channels', data => {
-            data.channels.forEach(add_channel);
-        });
-        // When channel submitted, emit socket event
+
+        // Load messages from last visited channel
+        // if (localStorage.getItem('channel')) {
+        //     const channel = localStorage.getItem('channel');
+        //     socket.emit('request messages', {'channel': channel});
+        //     document.querySelector('.channel-title').innerHTML = `Channel: ${channel}`;
+        // }
+        // else {
+        //     socket.emit('request messages', {'channel': 'General'});
+        //     document.querySelector('.channel-title').innerHTML = 'Channel: General';
+        // }
+
+        // When channel submitted
         document.querySelector('.channel__button').onclick = () => {
             const channel = document.querySelector('.channel__field').value;
             socket.emit('submit channel', {'channel': channel});
             document.querySelector('.channel__field').value = '';
             return false;
         };
-        // When channel announced, update list
-        socket.on('announce channel', data => {
-            add_channel(data.channel);
-        });
+        
 
         // When message submitted
         document.querySelector('.message__button').onclick = () => {
@@ -54,53 +63,45 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.message__field').value = '';
             return false;
         };
-        // When message announced, update messages
-        socket.on('announce message', data => {
-            const li = document.createElement('li');
-            li.innerHTML = data.message;
-            document.querySelector('.messages').append(li);
-        });
-        // Load messages for clicked channel
-        socket.on('load messages', data => {
-            for (let message of data.messages) {
-                let li = document.createElement('li');
-                li.innerHTML = message.message;
-                document.querySelector('.messages').append(li);
-            }
-        });
         
-        // Add channel to the channels list
-        function add_channel(channel) {
-            
-            // Create anchor
-            const a = document.createElement('a');
-            a.setAttribute('href', 'javascript:void(0);');
-            a.className = 'channels__item';
-            a.innerHTML = channel;
-            
-            // When channel clicked load messages
-            a.onclick = () => {
-                document.querySelector('.messages').innerHTML = '';
-                localStorage.setItem('channel', channel)
-                document.querySelector('.channel-title').innerHTML = `Channel: ${channel}`;
-                socket.emit('request messages', {'channel': channel});
-            };
-            
-            // Create list item and append anchor
-            const li = document.createElement('li');
-            li.append(a)
-            
-            // When anchor is clicked load messages for the channel
-            // Append list item to channels list
-            document.querySelector('.channels').append(li);
-            
-        }
 
     });
+
+
+    // Load saved channels from server
+    socket.on('load channels', data => {
+        // @Check
+        document.querySelector('.channels').innerHTML = '';
+        data.channels.forEach(add_channel);
+    });
+
+    // When channel announced, update channels
+    socket.on('announce channel', data => {
+        add_channel(data.channel);
+    });
+
+    // When message announced, update messages
+    socket.on('announce message', data => {
+        const li = document.createElement('li');
+        li.innerHTML = data.message;
+        document.querySelector('.messages').append(li);
+    });
+
+    // Load messages for clicked channel
+    socket.on('load messages', data => {
+        // @Check
+        document.querySelector('.messages').innerHTML = '';
+        for (let message of data.messages) {
+            let li = document.createElement('li');
+            li.innerHTML = message.message;
+            document.querySelector('.messages').append(li);
+        }
+    });
     
+    
+
     // Disable button if field is empty
     function validate(button, field) {
-        
         document.querySelector(button).disabled = true;
         document.querySelector(field).onkeyup = () => {
             if (document.querySelector(field).value.length > 0) {
@@ -109,8 +110,32 @@ document.addEventListener('DOMContentLoaded', () => {
             else {
                 document.querySelector(button).disabled = true;
             }
+        };   
+    }
+    
+    // Add channel to the channels list
+    function add_channel(channel) {
+    
+        // Create anchor
+        const a = document.createElement('a');
+        a.setAttribute('href', 'javascript:void(0);');
+        a.className = 'channels__item';
+        a.innerHTML = channel;
+        
+        // When anchor is clicked load messages for the channel
+        a.onclick = () => {
+            document.querySelector('.messages').innerHTML = '';
+            localStorage.setItem('channel', channel)
+            document.querySelector('.channel-title').innerHTML = `Channel: ${channel}`;
+            socket.emit('request messages', {'channel': channel});
         };
         
+        // Create list item and append anchor
+        const li = document.createElement('li');
+        li.append(a)
+        
+        // Append list item to channels list
+        document.querySelector('.channels').append(li);
+        
     }
-
 });
