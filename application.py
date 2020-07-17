@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask_socketio import SocketIO, emit, join_room, leave_room
 
 app = Flask(__name__, static_url_path = '/static', static_folder = "static")
@@ -44,3 +44,11 @@ def request_messages(data):
         emit("load messages", {"messages": messages[channel]}, room=channel)
     except KeyError:
         pass
+
+@app.route("/reset", methods=["GET"])
+def reset():
+    global channels
+    global messages
+    channels = ["General"]
+    messages = {}
+    return redirect("/")

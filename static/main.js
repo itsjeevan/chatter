@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // localStorage.clear();
-
     let socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
     // Disable channel, message, and username button if field is empty
@@ -24,10 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.username').remove();
             return false;
         };
-    }
-
-
-    
+    } 
     
     // Once connected to web socket
     socket.on('connect', () => {
@@ -53,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.channel__field').value = '';
             return false;
         };
-        
 
         // When message submitted
         document.querySelector('.message__button').onclick = () => {
@@ -62,11 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
             socket.emit('submit message', {'message': message, 'channel': channel});
             document.querySelector('.message__field').value = '';
             return false;
-        };
-        
+        };   
 
     });
-
 
     // Load saved channels from server
     socket.on('load channels', data => {
@@ -98,21 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    
-
-    // Disable button if field is empty
-    function validate(button, field) {
-        document.querySelector(button).disabled = true;
-        document.querySelector(field).onkeyup = () => {
-            if (document.querySelector(field).value.length > 0) {
-                document.querySelector(button).disabled = false;
-            }
-            else {
-                document.querySelector(button).disabled = true;
-            }
-        };   
-    }
-    
     // Add channel to the channels list
     function add_channel(channel) {
     
@@ -138,4 +115,18 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.channels').append(li);
         
     }
+
 });
+
+// Disable button if field is empty
+function validate(button, field) {
+    document.querySelector(button).disabled = true;
+    document.querySelector(field).onkeyup = () => {
+        if (document.querySelector(field).value.length > 0) {
+            document.querySelector(button).disabled = false;
+        }
+        else {
+            document.querySelector(button).disabled = true;
+        }
+    };   
+}
