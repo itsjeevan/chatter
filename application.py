@@ -32,11 +32,15 @@ def submit_message(data):
         messages[channel].append({"message": message})
     except KeyError:
         messages[channel] = [{"message": message}]
-    emit("announce message", {"message": message}, broadcast=True)
+    emit("announce message", {"message": message}, room=channel)
     
 @socketio.on("request messages")
 def request_messages(data):
+    for channel in channels:
+        leave_room(channel)
     try:
-        emit("load messages", {"messages": messages[data["channel"]]}, broadcast=True)
+        channel = data["channel"]
+        join_room(channel)
+        emit("load messages", {"messages": messages[channel]}, room=channel)
     except KeyError:
         pass
