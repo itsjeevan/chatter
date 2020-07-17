@@ -36,15 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
         socket.emit('request channels');
 
         // Load messages from last visited channel
-        // if (localStorage.getItem('channel')) {
-        //     const channel = localStorage.getItem('channel');
-        //     socket.emit('request messages', {'channel': channel});
-        //     document.querySelector('.channel-title').innerHTML = `Channel: ${channel}`;
-        // }
-        // else {
-        //     socket.emit('request messages', {'channel': 'General'});
-        //     document.querySelector('.channel-title').innerHTML = 'Channel: General';
-        // }
+        if (localStorage.getItem('channel')) {
+            const channel = localStorage.getItem('channel');
+            socket.emit('request messages', {'channel': channel});
+            document.querySelector('.channel-title').innerHTML = `Channel: ${channel}`;
+        }
+        else {
+            socket.emit('request messages', {'channel': 'General'});
+            document.querySelector('.channel-title').innerHTML = 'Channel: General';
+        }
 
         // When channel submitted
         document.querySelector('.channel__button').onclick = () => {
