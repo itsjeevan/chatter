@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // localStorage.clear();
+
     let socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
     // Disable channel, message, and username button if field is empty
@@ -52,8 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // When message submitted
         document.querySelector('.message__button').onclick = () => {
             const message = document.querySelector('.message__field').value;
-            const channel = localStorage.getItem('channel')
-            socket.emit('submit message', {'message': message, 'channel': channel});
+            const channel = localStorage.getItem('channel');
+            const username = localStorage.getItem('username');
+            socket.emit('submit message', {'username': username, 'message': message, 'channel': channel});
             document.querySelector('.message__field').value = '';
             return false;
         };   
@@ -75,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // When message announced, update messages
     socket.on('announce message', data => {
         const li = document.createElement('li');
-        li.innerHTML = data.message;
+        li.innerHTML = `${data.username}: ${data.message}`;
         document.querySelector('.messages').append(li);
     });
 
@@ -85,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.messages').innerHTML = '';
         for (let message of data.messages) {
             let li = document.createElement('li');
-            li.innerHTML = message.message;
+            li.innerHTML = `${message.username}: ${message.message}`;
             document.querySelector('.messages').append(li);
         }
     });

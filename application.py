@@ -21,7 +21,7 @@ def request_channels():
 @socketio.on("submit channel")
 def submit_channel(data):
     channel = data["channel"]
-    if channel in channels:
+    if channel.lower() in map(str.lower, channels):
         pass
     else:
         channels.append(channel)
@@ -29,16 +29,16 @@ def submit_channel(data):
 
 @socketio.on("submit message")
 def submit_message(data):
+    username = data["username"]
     message = data["message"]
     channel = data["channel"]
     try:
-        messages[channel].append({"message": message})
+        messages[channel].append({"username": username, "message": message})
     except KeyError:
-        messages[channel] = [{"message": message}]
+        messages[channel] = [{"username": username, "message": message}]
     if len(messages[channel]) > 100:
         messages[channel].pop(0)
-    emit("announce message", {"message": message}, room=channel)
-    
+    emit("announce message", {"username": username, "message": message}, room=channel)
     
 @socketio.on("request messages")
 def request_messages(data):
