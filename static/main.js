@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // When message announced, update messages
     socket.on('announce message', data => {
         const li = document.createElement('li');
-        li.innerHTML = `${data.username}: ${data.message}`;
+        li.innerHTML = `${data.timestamp} ${data.username}: ${data.message}`;
         document.querySelector('.messages').append(li);
     });
 
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     socket.on('load messages', data => {
         for (let message of data.messages) {
             let li = document.createElement('li');
-            li.innerHTML = `${message.username}: ${message.message}`;
+            li.innerHTML = `${message.timestamp} ${message.username}: ${message.message}`;
             document.querySelector('.messages').append(li);
         }
     });

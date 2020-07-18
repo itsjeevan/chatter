@@ -2,6 +2,7 @@ import os
 
 from flask import Flask, render_template, request, redirect
 from flask_socketio import SocketIO, emit, join_room, leave_room
+from datetime import datetime
 
 app = Flask(__name__, static_url_path = '/static', static_folder = "static")
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
@@ -32,13 +33,17 @@ def submit_message(data):
     username = data["username"]
     message = data["message"]
     channel = data["channel"]
+    global datetime
+    datetime = datetime.now()
+    timestamp = datetime.strftime("%Y/%m/%d %I:%M %p")
+    print(timestamp)
     try:
-        messages[channel].append({"username": username, "message": message})
+        messages[channel].append({"username": username, "message": message, "timestamp": timestamp})
     except KeyError:
-        messages[channel] = [{"username": username, "message": message}]
+        messages[channel] = [{"username": username, "message": message, "timestamp": timestamp}]
     if len(messages[channel]) > 100:
         messages[channel].pop(0)
-    emit("announce message", {"username": username, "message": message}, room=channel)
+    emit("announce message", {"username": username, "message": message, "timestamp": timestamp}, room=channel)
     
 @socketio.on("request messages")
 def request_messages(data):
