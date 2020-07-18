@@ -36,14 +36,14 @@ def submit_message(data):
     global datetime
     datetime = datetime.now()
     timestamp = datetime.strftime("%Y/%m/%d %I:%M %p")
-    print(timestamp)
+    message_object = {"username": username, "message": message, "timestamp": timestamp}
     try:
-        messages[channel].append({"username": username, "message": message, "timestamp": timestamp})
+        messages[channel].append(message_object)
     except KeyError:
-        messages[channel] = [{"username": username, "message": message, "timestamp": timestamp}]
+        messages[channel] = [message_object]
     if len(messages[channel]) > 100:
         messages[channel].pop(0)
-    emit("announce message", {"username": username, "message": message, "timestamp": timestamp}, room=channel)
+    emit("announce message", message_object, room=channel)
     
 @socketio.on("request messages")
 def request_messages(data):
