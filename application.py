@@ -16,7 +16,7 @@ def index():
 
 @socketio.on("request channels")
 def request_channels():
-    emit("load channels", {"channels": channels}, broadcast=True)
+    emit("load channels", {"channels": channels}, broadcast=False)
 
 @socketio.on("submit channel")
 def submit_channel(data):
@@ -47,7 +47,7 @@ def request_messages(data):
     try:
         channel = data["channel"]
         join_room(channel)
-        emit("load messages", {"messages": messages[channel]}, room=channel)
+        emit("load messages", {"messages": messages[channel]}, broadcast=False)
     except KeyError:
         pass
 

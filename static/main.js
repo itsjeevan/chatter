@@ -65,8 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load saved channels from server
     socket.on('load channels', data => {
-        // @Check
-        document.querySelector('.channels').innerHTML = '';
         data.channels.forEach(add_channel);
     });
 
@@ -84,8 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load messages for clicked channel
     socket.on('load messages', data => {
-        // @Check
-        document.querySelector('.messages').innerHTML = '';
         for (let message of data.messages) {
             let li = document.createElement('li');
             li.innerHTML = `${message.username}: ${message.message}`;
