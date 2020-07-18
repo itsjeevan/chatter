@@ -21,8 +21,11 @@ def request_channels():
 @socketio.on("submit channel")
 def submit_channel(data):
     channel = data["channel"]
-    channels.append(channel)
-    emit("announce channel", {"channel": channel}, broadcast=True)
+    if channel in channels:
+        pass
+    else:
+        channels.append(channel)
+        emit("announce channel", {"channel": channel}, broadcast=True)
 
 @socketio.on("submit message")
 def submit_message(data):
