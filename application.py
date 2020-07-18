@@ -35,7 +35,10 @@ def submit_message(data):
         messages[channel].append({"message": message})
     except KeyError:
         messages[channel] = [{"message": message}]
+    if len(messages[channel]) > 100:
+        messages[channel].pop(0)
     emit("announce message", {"message": message}, room=channel)
+    
     
 @socketio.on("request messages")
 def request_messages(data):
