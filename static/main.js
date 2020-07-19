@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
     // Disable channel, message, and username button if field is empty
-    validate('.channel__button', '.channel__field');
-    validate('.message__button', '.message__field');
-    validate('.username__button', '.username__field');
+    validate_field('.channel__button', '.channel__field');
+    validate_field('.message__button', '.message__field');
+    validate_field('.username__button', '.username__field');
 
     // If a username exists, use it & hide form
     if (localStorage.getItem('username')) {
@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('username', username);
             document.querySelector('.username-title').innerHTML = `Welcome ${username}`;
             document.querySelector('.username').remove();
+            validate_field('.channel__button', '.channel__field');
+            validate_field('.message__button', '.message__field');
             return false;
         };
     } 
@@ -120,8 +122,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Disable button if field is empty
-function validate(button, field) {
+function validate_field(button, field) {
     document.querySelector(button).disabled = true;
+    if (button === '.username__button') {
+        field_length(button, field);
+    }
+    else if (localStorage.getItem('username')) {
+        field_length(button, field);
+    }
+}
+
+// Check field length
+function field_length(button, field) {
     document.querySelector(field).onkeyup = () => {
         if (document.querySelector(field).value.length > 0) {
             document.querySelector(button).disabled = false;
@@ -129,5 +141,5 @@ function validate(button, field) {
         else {
             document.querySelector(button).disabled = true;
         }
-    };   
+    };
 }

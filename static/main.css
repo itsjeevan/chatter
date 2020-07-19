@@ -18,9 +18,9 @@
 
 .messages {
     border: 1px solid black;
-    height: 500px;
+    height: 75%;
 }
 
 .messages__item {
-    color: red;
+    overflow-wrap: break-word;
 }
