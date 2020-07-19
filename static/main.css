@@ -18,7 +18,8 @@
 
 .messages {
     border: 1px solid black;
-    height: 75%;
+    height: 25%;
+    overflow: auto;
 }
 
 .messages__item {

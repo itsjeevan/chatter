@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             validate_field('.message__button', '.message__field');
             return false;
         };
-    } 
+    }
     
     // Once connected to web socket
     socket.on('connect', () => {
@@ -81,16 +81,19 @@ document.addEventListener('DOMContentLoaded', () => {
         li.className = 'messages__item';
         li.innerHTML = `${data.timestamp} ${data.username}: ${data.message}`;
         document.querySelector('.messages').append(li);
+        li.scrollIntoView(false);    
     });
 
     // Load messages for clicked channel
     socket.on('load messages', data => {
+        let li;
         for (let message of data.messages) {
-            let li = document.createElement('li');
+            li = document.createElement('li');
             li.className = 'messages__item';
             li.innerHTML = `${message.timestamp} ${message.username}: ${message.message}`;
             document.querySelector('.messages').append(li);
         }
+        li.scrollIntoView(false); 
     });
     
     // Add channel to the channels list
