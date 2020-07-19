@@ -1,4 +1,26 @@
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.left-panel {
+    background-color: #f6f5ff;
+    padding: 1rem;
+    width: 200px;
+}
+
+.right-panel {
+    background-color: #fafafa;
+    padding: 1rem;
+    width: 100%;
+}
+
+
 .messages {
     border: 1px solid black;
     height: 500px;
+}
+
+.messages__item {
+    color: red;
 }

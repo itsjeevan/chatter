@@ -1,46 +1,54 @@
 <!doctype html>
+
 <html>
+
     <head>
         <title>Chatter</title>
-        <script src="/static/main.js"></script>
-        <link rel="stylesheet" href="/static/main.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+        <script src="/static/main.js"></script>
+        <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+        <link rel="stylesheet" href="/static/main.css">
     </head>
+
     <body>
 
-        
-        <form class="username">
-            <input class="username__field" type="text">
-            <button class="username__button">Save Username</button>
-        </form>
-        <h1 class="username-title"></h1>
+        <div class="container">
 
-
-        <hr>
-        
-        
-        <h1>Channels</h1> 
-        <form class="channel">
-            <input class="channel__field" type="text">
-            <button class="channel__button">Create Channel</button>
-        </form>
-
-        <ul class="channels">
-        </ul>
-
-
-        <hr>
-
-        <h1 class="channel-title">Channel Name Here</h1>
-        <ul class="messages">
+            <div class="left-panel">
+                
+                <form class="username">
+                    <input class="username__field" type="text">
+                    <button class="username__button">Save Username</button>
+                </form>
+                <h1 class="username-title"></h1>
+                
+                <h1>Channels</h1> 
+                <form class="channel">
+                    <input class="channel__field" type="text">
+                    <button class="channel__button">Create Channel</button>
+                </form>
+                
+                <ul class="channels">
+                </ul>
+                
+            </div>
             
-        </ul>
+            <div class="right-panel">
+                
+                
+                <h1 class="channel-title"></h1>
+                <ul class="messages">   
+                </ul>
+                
+                <form class="message">
+                    <input class="message__field" type="text">
+                    <button class="message__button">Send Message</button>
+                </form>
+                
+            </div>
 
-        <form class="message">
-            <input class="message__field" type="text">
-            <button class="message__button">Send Message</button>
-        </form>
-
-
-    </body>
-</html>
+        </div>
+            
+        </body>
+        
+        </html>
