@@ -70,6 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load saved channels from server
     socket.on('load channels', data => {
         data.channels.forEach(add_channel);
+        // Set last clicked channel in channels list to 'active' 
+        const channel = localStorage.getItem('channel');
+        document.querySelectorAll('.channels-list__item').forEach(li => {
+            if (li.innerHTML === channel) {
+                li.className += ' ' + 'channels-list__item--active';
+            }
+        });
     });
 
     // When channel announced, update channels
@@ -108,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // When anchor is clicked load messages for the channel
         li.onclick = () => {
+            // Remove all 'active' classes
             document.querySelectorAll('.channels-list__item').forEach(li => {
                 li.className = 'channels-list__item';
             });
