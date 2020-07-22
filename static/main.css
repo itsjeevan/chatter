@@ -1,27 +1,84 @@
+/* Fonts */
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* Containers */
+
 .container {
     display: flex;
+    flex-direction: row;
     height: 100vh;
 }
 
 .left-panel {
-    background-color: #f6f5ff;
-    padding: 1rem;
+    align-items: center;
+    background-color: #F8F8F8;
+    display: flex;
+    flex-direction: column;
+    padding: 0 4rem;
     width: 200px;
 }
 
 .right-panel {
-    background-color: #fafafa;
-    padding: 1rem;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+
+/* Left Panel */
+
+.channel-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.channel-form__button {
     width: 100%;
 }
 
-
-.messages {
-    border: 1px solid black;
-    height: 25%;
-    overflow: auto;
+.channels-list {
+    list-style-type: none;
+    padding-left: 0;
+    width: 100%;
 }
 
-.messages__item {
+.channels-list__item {
+    background-color: white;
+    border: 1px solid #61BE35;
+    border-radius: 0.25rem;
+    color: black;
+    font-weight: bold;
+    margin-top: 1rem;
+    padding: 0.5rem 0 0.5rem 1rem;
+    text-decoration: none;
+}
+
+.channels-list__item:hover {
+    background-color: #61BE35;
+    color: white;
+}
+
+.channels-list__item--active {
+    background-color: #61BE35;
+    color: white;
+}
+
+
+/* Messages */
+
+.messages-list {
+    border: 1px solid black;
+    flex: 1;
+    list-style-type: none;
+    overflow: auto;
+    padding-left: 0;
+}
+
+.messages-list__item {
     overflow-wrap: break-word;
 }
