@@ -6,8 +6,9 @@
         <title>Chatter</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
         <script src="/static/main.js"></script>
-        <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
-        <link rel="stylesheet" href="/static/main.css">
+        <link href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+        <link href="/static/main.css" rel="stylesheet">
     </head>
 
     <body>
@@ -15,20 +16,27 @@
         <div class="container">
 
             <div class="left-panel">
+
+                <h1>Chatter</h1>
+
+                <h2>Username</h2>
                 
-                <form class="username">
-                    <input class="username__field" type="text">
-                    <button class="username__button">Save Username</button>
+                <form class="username-form">
+                    <input class="username-form__input" type="text" placeholder="Choose username...">
+                    <button class="username-form__button">Save Username</button>
                 </form>
-                <h1 class="username-title"></h1>
+
+                <h2 class="username-title"></h1>
                 
-                <h1>Channels</h1> 
-                <form class="channel">
-                    <input class="channel__field" type="text">
-                    <button class="channel__button">Create Channel</button>
+
+                <h2>Channels</h1> 
+
+                <form class="channel-form">
+                    <input class="channel-form__input" type="text">
+                    <button class="channel-form__button">Create Channel</button>
                 </form>
                 
-                <ul class="channels">
+                <ul class="channels-list">
                 </ul>
                 
             </div>
@@ -36,13 +44,13 @@
             <div class="right-panel">
                 
                 
-                <h1 class="channel-title"></h1>
-                <ul class="messages">   
+                <h2 class="channel-title"></h1>
+                <ul class="messages-list">   
                 </ul>
                 
-                <form class="message">
-                    <input class="message__field" type="text">
-                    <button class="message__button">Send Message</button>
+                <form class="message-form">
+                    <input class="message-form__input" type="text" placeholder="Send a message...">
+                    <button class="message-form__button">Send Message</button>
                 </form>
                 
             </div>
