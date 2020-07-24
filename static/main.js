@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    localStorage.clear();
+    // localStorage.clear();
 
     let socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
