@@ -86,10 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // When message announced, update messages
     socket.on('announce message', data => {
-        const li = document.createElement('li');
-        li.className = 'messages-list__item';
-        li.innerHTML = `${data.timestamp} ${data.username}: ${data.message}`;
-        document.querySelector('.messages-list').append(li);
+        let li = create_message(data);
         li.scrollIntoView(false);    
     });
 
@@ -97,10 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     socket.on('load messages', data => {
         let li;
         for (let message of data.messages) {
-            li = document.createElement('li');
-            li.className = 'messages-list__item';
-            li.innerHTML = `${message.timestamp} ${message.username}: ${message.message}`;
-            document.querySelector('.messages-list').append(li);
+            li = create_message(message);
         }
         li.scrollIntoView(false); 
     });
@@ -154,4 +148,31 @@ function field_length(button, field) {
             document.querySelector(button).disabled = true;
         }
     };
+}
+
+// Create message
+function create_message(data) {
+    const li = document.createElement('li');
+    li.className = 'messages-list__item';
+
+    const username = document.createElement('p');
+    username.className = 'message-username';
+    username.innerHTML = data.username;
+    
+    const timestamp  = document.createElement('span');
+    timestamp.className = 'message-timestamp';
+    timestamp.innerHTML = data.timestamp;
+
+    username.append(timestamp);
+
+    const message = document.createElement('p');
+    message.className = 'message-message';
+    message.innerHTML = data.message;
+
+    li.append(username);
+    li.append(message);
+
+    document.querySelector('.messages-list').append(li);
+
+    return li;
 }
