@@ -37,15 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
         socket.emit('request channels');
 
         // Load messages from last visited channel
-        if (localStorage.getItem('channel')) {
-            const channel = localStorage.getItem('channel');
-            socket.emit('request messages', {'channel': channel});
-            document.querySelector('.channel-title').innerHTML = `# ${channel}`;
+        if (!localStorage.getItem('channel')) {
+            localStorage.setItem('channel', 'General');
         }
-        else {
-            socket.emit('request messages', {'channel': 'General'});
-            document.querySelector('.channel-title').innerHTML = '# General';
-        }
+        const channel = localStorage.getItem('channel');
+        socket.emit('request messages', {'channel': channel});
+        document.querySelector('.channel-title').innerHTML = `# ${channel}`;
 
         // When channel submitted
         document.querySelector('.channel-form__button').onclick = () => {
@@ -66,6 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
         };   
 
     });
+
+    document.querySelectorAll('.channels-list__item').forEach(li => {
+        if (li.innerHTML === 'General') {
+            li.className += ' ' + 'channels-list__item--active';
+        }
+    })
 
     // Load saved channels from server
     socket.on('load channels', data => {
@@ -167,11 +170,13 @@ function create_message(data) {
 
     const message = document.createElement('p');
     message.className = 'message-message';
+    if (data.username === localStorage.getItem('username')) {
+        message.className += ' ' + 'message-message--owner';
+    }
     message.innerHTML = data.message;
 
     li.append(username);
     li.append(message);
-
     document.querySelector('.messages-list').append(li);
 
     return li;
