@@ -139,7 +139,35 @@ h2 {
 }
 
 .messages-list__item {
-    overflow-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+}
+
+.message-username {
+    font-weight: bold;
+    /* Adjust */
+    padding-left: 1rem;
+}
+
+.message-timestamp {
+    font-size: 0.9rem;
+    font-weight: normal;
+    margin-left: 1rem;
+}
+
+.message-message {
+    background-color: #E7E7E7;
+    border-radius: 0.5rem;
+    /* Adjust */
+    margin-top: 0;
+    overflow-wrap: anywhere;
+    padding: 1rem;
+    width: fit-content;
+}
+
+.message-message--owner {
+    background-color: #61BE35;
+    color: white;
 }
 
 
@@ -148,7 +176,8 @@ h2 {
 .message-form {
     display: flex;
     flex-direction: row;
-    margin-bottom: 3rem;
+    /* Adjust */
+    margin: 3rem 0;
 }
 
 .message-form__input {
