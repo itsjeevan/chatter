@@ -5,7 +5,6 @@ from flask_socketio import SocketIO, emit, join_room, leave_room
 from datetime import datetime
 
 app = Flask(__name__, static_url_path = '/static', static_folder = "static")
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 socketio = SocketIO(app)
 
 channels = ["General"]
@@ -63,3 +62,7 @@ def reset():
     channels = ["General"]
     messages = {}
     return redirect("/")
+
+if __name__=="__main__":
+    socketio.run(app, debug=True)
+    
