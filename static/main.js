@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // localStorage.clear();
-
-    let socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+   
+    var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
     // Disable channel, message, and username button if field is empty
     validate_field('.channel-form__button', '.channel-form__input');
@@ -32,6 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Once connected to web socket
     socket.on('connect', () => {
+
+        // document.querySelector('.messages-list').innerHTML = '';
+        // document.querySelector('.channels-list').innerHTML = '';
 
         // Request saved channels from server
         socket.emit('request channels');
