@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Once connected to web socket
     socket.on('connect', () => {
 
-        // document.querySelector('.messages-list').innerHTML = '';
-        // document.querySelector('.channels-list').innerHTML = '';
+        document.querySelector('.messages-list').innerHTML = '';
+        document.querySelector('.channels-list').innerHTML = '';
 
         // Request saved channels from server
         socket.emit('request channels');
@@ -67,12 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 
-    document.querySelectorAll('.channels-list__item').forEach(li => {
-        if (li.innerHTML === 'General') {
-            li.className += ' ' + 'channels-list__item--active';
-        }
-    })
-
     // Load saved channels from server
     socket.on('load channels', data => {
         data.channels.forEach(add_channel);
@@ -81,6 +75,17 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.channels-list__item').forEach(li => {
             if (li.innerHTML === channel) {
                 li.className += ' ' + 'channels-list__item--active';
+            }
+            // If a reset occurred, set default channel
+            else {
+                localStorage.setItem('channel', 'General');
+                socket.emit('request messages', {'channel': 'General'});
+                document.querySelector('.channel-title').innerHTML = `# General`;
+                document.querySelectorAll('.channels-list__item').forEach(li => {
+                    if (li.innerHTML === 'General') {
+                        li.className += ' ' + 'channels-list__item--active';
+                    }
+                });
             }
         });
     });
