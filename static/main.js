@@ -98,7 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // When message announced, update messages
     socket.on('announce message', data => {
         let li = create_message(data);
-        li.scrollIntoView(false);    
+        li.scrollIntoView(false);
+        add_margin();
     });
 
     // Load messages for clicked channel
@@ -107,7 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let message of data.messages) {
             li = create_message(message);
         }
-        li.scrollIntoView(false); 
+        li.scrollIntoView(false);
+        add_margin();
     });
     
     // Add channel to the channels list
@@ -188,4 +190,17 @@ function create_message(data) {
     document.querySelector('.messages-list').append(li);
 
     return li;
+}
+
+// Add margin to messages if scrollbar exists
+function add_margin() {
+    let messages = document.querySelector('.messages-list');
+    if (messages.scrollHeight > messages.offsetHeight) {
+        const message = document.querySelector('.messages-list');
+        message.className = 'messages-list' + ' ' + 'messages-list--padding';
+    }
+    else {
+        const message = document.querySelector('.messages-list');
+        message.className = 'messages-list';
+    }
 }

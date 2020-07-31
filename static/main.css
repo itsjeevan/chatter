@@ -143,6 +143,10 @@ h2 {
     flex-direction: column;
 }
 
+.messages-list--padding {
+    padding-right: 3rem;
+}
+
 .message-username {
     font-weight: bold;
     /* Adjust */
@@ -158,12 +162,14 @@ h2 {
 .message-message {
     background-color: #E7E7E7;
     border-radius: 0.5rem;
+    line-height: 1.75rem;
     /* Adjust */
     margin-top: 0;
     overflow-wrap: anywhere;
-    padding: 1rem;
+    padding: 0.75rem 1rem;
     width: fit-content;
 }
+
 
 .message-message--owner {
     background-color: #61BE35;
