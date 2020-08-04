@@ -72,22 +72,25 @@ document.addEventListener('DOMContentLoaded', () => {
         data.channels.forEach(add_channel);
         // Set last clicked channel in channels list to 'active' 
         const channel = localStorage.getItem('channel');
+        let channel_found  = false;
         document.querySelectorAll('.channels-list__item').forEach(li => {
             if (li.innerHTML === channel) {
                 li.className += ' ' + 'channels-list__item--active';
-            }
-            // If a reset occurred, set default channel
-            else {
-                localStorage.setItem('channel', 'General');
-                socket.emit('request messages', {'channel': 'General'});
-                document.querySelector('.channel-title').innerHTML = `# General`;
-                document.querySelectorAll('.channels-list__item').forEach(li => {
-                    if (li.innerHTML === 'General') {
-                        li.className += ' ' + 'channels-list__item--active';
-                    }
-                });
+                channel_found = true;
             }
         });
+        // If a reset occurred, set default channel
+        if (!channel_found) {
+            localStorage.setItem('channel', 'General');
+            socket.emit('request messages', {'channel': 'General'});
+            document.querySelector('.channel-title').innerHTML = `# General`;
+            document.querySelectorAll('.channels-list__item').forEach(li => {
+                if (li.innerHTML === 'General') {
+                    li.className += ' ' + 'channels-list__item--active';
+                }
+            });
+        }
+        
     });
 
     // When channel announced, update channels
