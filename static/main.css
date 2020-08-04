@@ -5,7 +5,7 @@ body {
 }
 
 hr {
-    border-top: 1px solid lightgray;
+    border-top: 1px solid #d9d9d9;
     margin: 0;
     width: 100%;
 }
@@ -20,13 +20,14 @@ hr {
 
 .left-panel {
     align-items: center;
-    background-color: #F8F8F8;
+    background-color: #EEEEEE;
     display: flex;
     flex-direction: column;
     padding: 0 4rem; /* Adjust */
 }
 
 .right-panel {
+    background-color: #F8F8F8;
     display: flex;
     flex-grow: 1;
     flex-direction: column;
@@ -39,21 +40,22 @@ hr {
 /** Text **/
 
 h1 {
-    font-size: 1rem;
+    font-size: 1.1rem;
     /* Adjust */
     margin: 3rem 0;
-    text-transform: uppercase;
 }
 
 h2 {
-    font-size: 1.33rem;
+    font-size: 1rem;
+    font-weight: normal;
+    text-transform: uppercase;
     /* Adjust */
     margin: 3rem 0;
 }
 
 .username-title {
-    background-color: white;
-    border: 1px solid #61BE35;
+    /* background-color: white; */
+    /* border: 1px solid #61BE35; */
     border-radius: 0.25rem;
     font-size: 1rem;
     /* Adjust */
@@ -84,7 +86,7 @@ h2 {
 }
 
 .username-form__button, .channel-form__button {
-    background-color: #61BE35;
+    background-color: #61be35;
     border: 1px solid #808080;
     border-bottom-right-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
@@ -94,7 +96,7 @@ h2 {
 }
 
 .username-form__button:disabled, .channel-form__button:disabled {
-    background-color: #a7d492;
+    background-color: #c6d9bf;
 }
 
 /** Channels **/
@@ -107,18 +109,18 @@ h2 {
 
 .channels-list__item {
     background-color: white;
-    border: 1px solid #61BE35;
+    /* border: 1px solid #61be35; */
     border-radius: 0.25rem;
     font-weight: bold;
+    font-size: 1rem;
     margin-bottom: 1rem;                              /* Adjust */
-    padding: 0.75rem 1rem;
+    padding: 0.7rem 1rem;
 }
 
-.channels-list__item--active, .channels-list__item:hover {
-    background-color: #61BE35;
+.channels-list__item:hover, .channels-list__item--active {
+    background-color: #61be35;
     color: white;
 }
-
 
 
 /* Right Panel */
@@ -172,7 +174,7 @@ h2 {
 
 
 .message-message--owner {
-    background-color: #61BE35;
+    background-color: #61be35;
     color: white;
 }
 
@@ -187,7 +189,7 @@ h2 {
 }
 
 .message-form__input {
-    border: 1px solid #cccccc;
+    border: 1px solid #E7E7E7;
     border-bottom-left-radius: 0.75rem;
     border-top-left-radius: 0.75rem;
     border-right: none;
@@ -200,14 +202,15 @@ h2 {
 }
 
 .message-form__button {
-    background-color: #61BE35;
-    border: 1px solid #cccccc;
+    background-color: #61be35;
+    border: 1px solid #E7E7E7;
     border-bottom-right-radius: 0.75rem;
     border-top-right-radius: 0.75rem;
     color: white;
+    font-weight: bold;
     width: 76px;
 }
 
 .message-form__button:disabled {
-    background-color: #a7d492;
+    background-color: #b6d9a9;
 }
