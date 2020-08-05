@@ -2,13 +2,18 @@
 
 body {
     font-family: 'Poppins', sans-serif;
+    display: border-box;
 }
 
 hr {
     border-top: 1px solid #d9d9d9;
     margin: 0;
     width: 100%;
+
+    /* Firefox  */
+    color: #d9d9d9;
 }
+
 
 /* Containers */
 
@@ -29,7 +34,8 @@ hr {
 .right-panel {
     background-color: #F8F8F8;
     display: flex;
-    flex-grow: 1;
+    flex: 1 0 auto;
+    /* flex-grow: 1; */
     flex-direction: column;
     padding: 0 4rem; /* Adjust */
 }
@@ -54,8 +60,6 @@ h2 {
 }
 
 .username-title {
-    /* background-color: white; */
-    /* border: 1px solid #61BE35; */
     border-radius: 0.25rem;
     font-size: 1rem;
     /* Adjust */
@@ -72,6 +76,10 @@ h2 {
     margin-bottom: 3rem;
 }
 
+.username-form {
+    box-shadow: 0px 0px 25px 5px #61be35;
+}
+
 .username-form__input, .channel-form__input {
     border: 1px solid #808080;
     border-bottom-left-radius: 0.25rem;
@@ -79,6 +87,10 @@ h2 {
     border-right: none;
     flex-grow: 1;
     padding: 0.5rem 1rem;
+
+    /* Firefox */
+    height: 18px;
+    width: 202px;
 }
 
 .username-form__input:focus, .channel-form__input:focus {
@@ -95,7 +107,7 @@ h2 {
     width: 36px;
 }
 
-.username-form__button:disabled, .channel-form__button:disabled {
+.channel-form__button:disabled {
     background-color: #c6d9bf;
 }
 
@@ -109,7 +121,6 @@ h2 {
 
 .channels-list__item {
     background-color: white;
-    /* border: 1px solid #61be35; */
     border-radius: 0.25rem;
     font-weight: bold;
     font-size: 1rem;
@@ -121,7 +132,6 @@ h2 {
     background-color: #61be35;
     color: white;
 }
-
 
 /* Right Panel */
 
@@ -169,7 +179,7 @@ h2 {
     margin-top: 0;
     overflow-wrap: anywhere;
     padding: 0.75rem 1rem;
-    width: fit-content;
+    width: max-content;
 }
 
 
@@ -195,6 +205,9 @@ h2 {
     border-right: none;
     flex-grow: 1;
     padding: 1.75rem 1.75rem;
+
+    /* Firefox */
+    height: 18px; 
 }
 
 .message-form__input:focus {
