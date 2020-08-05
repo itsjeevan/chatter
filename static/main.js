@@ -69,7 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load saved channels from server
     socket.on('load channels', data => {
+
         data.channels.forEach(add_channel);
+
         // Set last clicked channel in channels list to 'active' 
         const channel = localStorage.getItem('channel');
         let channel_found  = false;
@@ -79,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 channel_found = true;
             }
         });
+
         // If a reset occurred, set default channel
         if (!channel_found) {
             localStorage.setItem('channel', 'General');
@@ -89,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     li.className += ' ' + 'channels-list__item--active';
                 }
             });
-        }
+        } 
         
     });
 
