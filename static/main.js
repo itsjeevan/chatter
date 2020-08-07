@@ -98,7 +98,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // When channel announced, update channels
     socket.on('announce channel', data => {
-        add_channel(data.channel);
+        
+        let li = add_channel(data.channel);
+
+        // Add animation to the channel
+        li.animate([
+            { opacity: 0, marginTop: '-1rem' },
+            { opacity: 1, marginTop: '0rem' }
+        ], {
+            duration: 250,
+            fill: 'forwards'
+        });
+
     });
 
     // When message announced, update messages
@@ -138,10 +149,13 @@ document.addEventListener('DOMContentLoaded', () => {
             li.className += ' ' + 'channels-list__item--active';
             socket.emit('request messages', {'channel': channel});
         };
-        
+
         // Append list item to channels list
         document.querySelector('.channels-list').append(li);
         
+        // Animate on 'announce channel'
+        return li;
+
     }
 
 });

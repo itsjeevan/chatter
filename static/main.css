@@ -124,8 +124,10 @@ h2 {
     border-radius: 0.25rem;
     font-weight: bold;
     font-size: 1rem;
-    margin-bottom: 1rem;                              /* Adjust */
+    /* Adjust */
+    margin-bottom: 1rem;
     padding: 0.7rem 1rem;
+    transition: 0.25s;
 }
 
 .channels-list__item:hover, .channels-list__item--active {
