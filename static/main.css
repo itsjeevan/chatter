@@ -28,16 +28,17 @@ hr {
     background-color: #EEEEEE;
     display: flex;
     flex-direction: column;
-    padding: 0 4rem; /* Adjust */
+    /* Adjust */
+    padding: 0 4rem;
 }
 
 .right-panel {
     background-color: #F8F8F8;
     display: flex;
-    flex: 1 0 auto;
-    /* flex-grow: 1; */
+    flex-grow: 1;
     flex-direction: column;
-    padding: 0 4rem; /* Adjust */
+    /* Adjust */
+    padding: 0 4rem;
 }
 
 
@@ -48,7 +49,7 @@ hr {
 h1 {
     font-size: 1.1rem;
     /* Adjust */
-    margin: 3rem 0;
+    margin: 4.25rem 0 3rem 0;
 }
 
 h2 {
@@ -64,7 +65,6 @@ h2 {
     font-size: 1rem;
     /* Adjust */
     margin: 0 0 3rem 0;
-    padding: 0.75rem;
 }
 
 /** Forms **/
@@ -77,7 +77,7 @@ h2 {
 }
 
 .username-form {
-    box-shadow: 0px 0px 25px 5px #61be35;
+    box-shadow: 0px 0px 25px 5px #36bf51;
 }
 
 .username-form__input, .channel-form__input {
@@ -98,7 +98,7 @@ h2 {
 }
 
 .username-form__button, .channel-form__button {
-    background-color: #61be35;
+    background: linear-gradient(to right, #61be35, #35be95);
     border: 1px solid #808080;
     border-bottom-right-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
@@ -108,7 +108,7 @@ h2 {
 }
 
 .channel-form__button:disabled {
-    background-color: #c6d9bf;
+    background: linear-gradient(to right, #b6d9a9, #a9d9ca);
 }
 
 /** Channels **/
@@ -127,12 +127,18 @@ h2 {
     /* Adjust */
     margin-bottom: 1rem;
     padding: 0.7rem 1rem;
-    transition: 0.25s;
+
+
+
+    transition: 0.125s;
+
 }
 
 .channels-list__item:hover, .channels-list__item--active {
-    background-color: #61be35;
     color: white;
+    background: linear-gradient(to right, #61be35, #35be95);
+    box-shadow: 5px 5px 5px #808080;
+    transform: scale(1.1);
 }
 
 /* Right Panel */
@@ -181,12 +187,12 @@ h2 {
     margin-top: 0;
     overflow-wrap: anywhere;
     padding: 0.75rem 1rem;
-    width: max-content;
+    width: fit-content;
 }
 
 
 .message-message--owner {
-    background-color: #61be35;
+    background: #36bf51;
     color: white;
 }
 
@@ -217,7 +223,7 @@ h2 {
 }
 
 .message-form__button {
-    background-color: #61be35;
+    background: linear-gradient(to right, #61be35, #35be95);
     border: 1px solid #E7E7E7;
     border-bottom-right-radius: 0.75rem;
     border-top-right-radius: 0.75rem;
@@ -227,5 +233,5 @@ h2 {
 }
 
 .message-form__button:disabled {
-    background-color: #b6d9a9;
+    background: linear-gradient(to right, #b6d9a9, #a9d9ca);
 }

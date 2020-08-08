@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { opacity: 0, marginTop: '-1rem' },
             { opacity: 1, marginTop: '0rem' }
         ], {
-            duration: 250,
+            duration: 125,
             fill: 'forwards'
         });
 
