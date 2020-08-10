@@ -28,7 +28,6 @@ hr {
     background-color: #EEEEEE;
     display: flex;
     flex-direction: column;
-    /* Adjust */
     padding: 0 4rem;
 }
 
@@ -37,7 +36,6 @@ hr {
     display: flex;
     flex-grow: 1;
     flex-direction: column;
-    /* Adjust */
     padding: 0 4rem;
 }
 
@@ -46,25 +44,25 @@ hr {
 
 /** Text **/
 
-h1 {
+.app-heading {
     font-size: 1.1rem;
-    /* Adjust */
-    margin: 4.25rem 0 3rem 0;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin: 4rem 0;
 }
 
-h2 {
+.username-heading, .channel-heading {
     font-size: 1rem;
     font-weight: normal;
     text-transform: uppercase;
-    /* Adjust */
-    margin: 3rem 0;
+    margin: 4rem 0 2rem 0;
 }
 
 .username-title {
     border-radius: 0.25rem;
     font-size: 1rem;
-    /* Adjust */
-    margin: 0 0 3rem 0;
+    margin: 0 0 4rem 0;
 }
 
 /** Forms **/
@@ -73,11 +71,15 @@ h2 {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-bottom: 3rem;
+}
+
+.channel-form {
+    margin-bottom: 2rem;
 }
 
 .username-form {
     box-shadow: 0px 0px 25px 5px #36bf51;
+    margin-bottom: 4rem;
 }
 
 .username-form__input, .channel-form__input {
@@ -124,14 +126,9 @@ h2 {
     border-radius: 0.25rem;
     font-weight: bold;
     font-size: 1rem;
-    /* Adjust */
     margin-bottom: 1rem;
     padding: 0.7rem 1rem;
-
-
-
     transition: 0.125s;
-
 }
 
 .channels-list__item:hover, .channels-list__item--active {
@@ -141,12 +138,14 @@ h2 {
     transform: scale(1.1);
 }
 
+
 /* Right Panel */
 
 /** Text **/
 
 .channel-title {
     font-size: 3rem;
+    margin: 4rem 0;
 }
 
 /** Messages **/
@@ -154,6 +153,7 @@ h2 {
 .messages-list {
     flex-grow: 1;
     list-style-type: none;
+    margin: 0rem;
     overflow: auto;
     padding-left: 0;
 }
@@ -169,8 +169,8 @@ h2 {
 
 .message-username {
     font-weight: bold;
-    /* Adjust */
     padding-left: 1rem;
+    margin: 0rem 0 1rem 0;
 }
 
 .message-timestamp {
@@ -183,26 +183,22 @@ h2 {
     background-color: #E7E7E7;
     border-radius: 0.5rem;
     line-height: 1.75rem;
-    /* Adjust */
-    margin-top: 0;
+    margin: 0 0 2rem 0;
     overflow-wrap: anywhere;
     padding: 0.75rem 1rem;
     width: fit-content;
 }
-
 
 .message-message--owner {
     background: #36bf51;
     color: white;
 }
 
-
 /** Form  **/
 
 .message-form {
     display: flex;
     flex-direction: row;
-    /* Adjust */
     margin: 4rem 0;
 }
 
