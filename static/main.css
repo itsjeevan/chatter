@@ -28,6 +28,8 @@ hr {
     display: flex;
     flex-direction: column;
     padding: 0 4rem;
+
+    overflow: auto;
 }
 
 .right-panel {
@@ -116,6 +118,7 @@ hr {
 
 .channels-list {
     list-style-type: none;
+    margin-bottom: 3rem;
     padding-left: 0;
     width: 100%;
 }
@@ -233,6 +236,6 @@ hr {
 }
 
 /* Safari */
-input::placeholder {
+input::-webkit-input-placeholder {
     line-height: normal;
 }
