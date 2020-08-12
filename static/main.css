@@ -89,7 +89,7 @@ hr {
     flex-grow: 1;
     padding: 0.5rem 1rem;
 
-    /* Firefox */
+    /* Firefox & Safari */
     height: 18px;
     width: 202px;
 }
@@ -150,7 +150,8 @@ hr {
 /** Messages **/
 
 .messages-list {
-    flex-grow: 1;
+    /* Safari */
+    flex: 1 1 0;
     list-style-type: none;
     margin: 0rem;
     overflow: auto;
@@ -209,7 +210,7 @@ hr {
     flex-grow: 1;
     padding: 1.75rem 1.75rem;
 
-    /* Firefox */
+    /* Firefox & Safari */
     height: 18px; 
 }
 
@@ -229,4 +230,9 @@ hr {
 
 .message-form__button:disabled {
     background: linear-gradient(to right, #b6d9a9, #a9d9ca);
+}
+
+/* Safari */
+input::placeholder {
+    line-height: normal;
 }
