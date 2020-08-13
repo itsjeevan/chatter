@@ -109,10 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
             duration: 125,
             fill: 'forwards'
         });
-        
-        // Scroll to bottom on animation end
-        let left_panel  = document.querySelector('.left-panel');
-        setTimeout(() => {left_panel.scrollTop = left_panel.scrollHeight;}, 125);
 
     });
 
