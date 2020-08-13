@@ -27,9 +27,8 @@ hr {
     background-color: #EEEEEE;
     display: flex;
     flex-direction: column;
-    padding: 0 4rem;
-
     overflow: auto;
+    padding: 0 4rem;
 }
 
 .right-panel {
@@ -129,6 +128,13 @@ hr {
     width: 100%;
 }
 
+/* Firefox */
+.channels-list:after {
+    display: block;
+    content: '';
+    height: 3rem;
+}
+
 .channels-list__item {
     background-color: white;
     border-radius: 0.25rem;
@@ -137,10 +143,6 @@ hr {
     margin-bottom: 1rem;
     padding: 0.7rem 1rem;
     transition: 0.125s;
-}
-
-.channels-list__item:last-child {
-    margin-bottom: 4rem;
 }
 
 .channels-list__item:hover, .channels-list__item--active {
