@@ -96,6 +96,10 @@ hr {
     /* Firefox & Safari */
     height: 18px;
     width: 202px;
+
+    /* Edge */
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
 }
 
 .username-form__input:focus, .channel-form__input:focus {
@@ -113,6 +117,10 @@ hr {
 
     /* Safari */
     height: 36px;
+
+    /* Edge */
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
 }
 
 .channel-form__button:disabled {
@@ -227,6 +235,10 @@ hr {
 
     /* Firefox & Safari */
     height: 18px; 
+
+    /* Edge */
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
 }
 
 .message-form__input:focus {
@@ -241,6 +253,10 @@ hr {
     color: white;
     font-weight: bold;
     width: 76px;
+
+    /* Edge */
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
 }
 
 .message-form__button:disabled {
