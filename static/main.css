@@ -27,6 +27,7 @@ hr {
     background-color: #EEEEEE;
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
     overflow: auto;
     padding: 0 4rem;
 }
