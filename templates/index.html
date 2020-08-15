@@ -3,13 +3,29 @@
 <html lang="en">
 
     <head>
+
         <title>Chatter</title>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA==" crossorigin="anonymous"></script>
-        <script src="/static/main.js"></script>
+        <script src="{{ url_for('static', filename='main.js') }}"></script>
+        
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-        <link href="/static/main.css" rel="stylesheet">
+        <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16.png">
+        <link rel="manifest" href="/static/favicons/site.webmanifest">
+        <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#36bf51">
+        <link rel="shortcut icon" href="/static/favicons/favicon.ico">
+        <meta name="apple-mobile-web-app-title" content="Chatter">
+        <meta name="application-name" content="Chatter">
+        <meta name="msapplication-TileColor" content="#00a300">
+        <meta name="msapplication-config" content="/static/favicons/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+
     </head>
 
     <body>
