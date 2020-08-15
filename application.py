@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect
 from flask_socketio import SocketIO, emit, join_room, leave_room
 from datetime import datetime
 
-app = Flask(__name__, static_url_path = '/static', static_folder = "static")
+app = Flask(__name__)
 socketio = SocketIO(app)
 
 channels = ["General"]
