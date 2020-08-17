@@ -64,5 +64,5 @@ def reset():
     return redirect("/")
 
 if __name__=="__main__":
-    socketio.run(app, debug=True)
+    app.run()
     
