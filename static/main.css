@@ -5,12 +5,12 @@ body {
 }
 
 hr {
-    border-top: 1px solid #d9d9d9;
+    border-top: 1px solid #D9D9D9;
     margin: 0;
     width: 100%;
 
     /* Firefox  */
-    color: #d9d9d9;
+    color: #D9D9D9;
 }
 
 
@@ -25,7 +25,7 @@ hr {
 .left-panel {
     align-items: center;
     background-color: #EEEEEE;
-    box-shadow: 2px 0px 20px #d3d3d3;
+    box-shadow: 2px 0px 20px #D3D3D3;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -84,7 +84,7 @@ hr {
 }
 
 .username-form {
-    box-shadow: 0px 0px 25px 5px #36bf51;
+    box-shadow: 0px 0px 25px 5px #36BF51;
     margin-bottom: 4rem;
 }
 
@@ -110,7 +110,7 @@ hr {
 }
 
 .username-form__button, .channel-form__button {
-    background: linear-gradient(to right, #61be35, #35be95);
+    background: linear-gradient(to right, #61BE35, #35BE95);
     border: 1px solid #808080;
     border-bottom-right-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
@@ -128,6 +128,10 @@ hr {
 
 .channel-form__button:disabled {
     background: linear-gradient(to right, #b6d9a9, #a9d9ca);
+}
+
+.channel-form__input:disabled {
+    background-color: white;
 }
 
 /** Channels **/
@@ -158,7 +162,7 @@ hr {
 
 .channels-list__item:hover, .channels-list__item--active {
     color: white;
-    background: linear-gradient(to right, #61be35, #35be95);
+    background: linear-gradient(to right, #61BE35, #35BE95);
     box-shadow: 5px 5px 5px #808080;
     transform: scale(1.1);
 }
@@ -221,7 +225,7 @@ hr {
 }
 
 .message-message--owner {
-    background: #36bf51;
+    background: #36BF51;
     color: white;
 }
 
@@ -254,7 +258,7 @@ hr {
 }
 
 .message-form__button {
-    background: linear-gradient(to right, #61be35, #35be95);
+    background: linear-gradient(to right, #61BE35, #35BE95);
     border: 1px solid #E7E7E7;
     border-bottom-right-radius: 0.75rem;
     border-top-right-radius: 0.75rem;
@@ -268,7 +272,11 @@ hr {
 }
 
 .message-form__button:disabled {
-    background: linear-gradient(to right, #b6d9a9, #a9d9ca);
+    background: linear-gradient(to right, #B6D9A9, #A9D9CA);
+}
+
+.message-form__input:disabled {
+    background-color: white;
 }
 
 /* Safari */
