@@ -168,6 +168,10 @@ function validate_field(button, field) {
     }
     else if (localStorage.getItem('username')) {
         field_length(button, field);
+        document.querySelector(field).disabled= false;
+    }
+    else {
+        document.querySelector(field).disabled= true;
     }
 }
 
