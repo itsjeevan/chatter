@@ -43,7 +43,7 @@ def submit_message(data):
     if len(messages[channel]) > 100:
         messages[channel].pop(0)
     emit("announce message", message_object, room=channel)
-    
+
 @socketio.on("request messages")
 def request_messages(data):
     for channel in channels:
@@ -65,4 +65,3 @@ def reset():
 
 if __name__=="__main__":
     app.run()
-    
