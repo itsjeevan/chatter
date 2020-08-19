@@ -139,15 +139,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // When anchor is clicked load messages for the channel
         li.onclick = () => {
-            // Remove all 'active' classes
-            document.querySelectorAll('.channels-list__item').forEach(li => {
-                li.className = 'channels-list__item';
-            });
+
+            // Remove 'active' class
+            document.querySelector('.channels-list__item--active').className = 'channels-list__item';
+            
             document.querySelector('.messages-list').innerHTML = '';
             document.querySelector('.channel-title').innerHTML = `# ${channel}`;
             localStorage.setItem('channel', channel)
             li.className += ' ' + 'channels-list__item--active';
             socket.emit('request messages', {'channel': channel});
+
         };
 
         // Append list item to channels list
