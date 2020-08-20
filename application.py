@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, redirect, url_for
 from flask_socketio import SocketIO, emit, join_room, leave_room
 from datetime import datetime
 
@@ -61,7 +61,7 @@ def reset():
     global messages
     channels = ["General"]
     messages = {}
-    return redirect(url_for('index'))
+    return redirect(url_for("index"))
 
 if __name__=="__main__":
     app.run()
