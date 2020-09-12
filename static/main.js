@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const channel = document.querySelector('.channel-form__input').value;
             socket.emit('submit channel', {'channel': channel});
             document.querySelector('.channel-form__input').value = '';
+            document.querySelector('.channel-form__button').disabled = true;
             return false;
         };
 
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const username = localStorage.getItem('username');
             socket.emit('submit message', {'username': username, 'message': message, 'channel': channel});
             document.querySelector('.message-form__input').value = '';
+            document.querySelector('.message-form__button').disabled = true;
             return false;
         };   
 
