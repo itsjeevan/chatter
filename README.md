@@ -1,10 +1,5 @@
 # Chatter
 
-A bare bones messsaging service similar to Slack or mIRC. Choose a username, join or create a channel, and start chatting!
+A chat application for the web with full-duplex communication, similar in spirit to Slack or mIRC. Users can choose a username, join or create channels, then begin chatting.
 
-## Tested on the following desktop browsers
-
-* Chrome
-* Firefox
-* Edge
-* Safari
+![screenshot](screenshot.png)
